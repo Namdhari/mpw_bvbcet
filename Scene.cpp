@@ -125,6 +125,8 @@ void Scene::toggle_view_poyhedron()
     m_view_polyhedron = !m_view_polyhedron;
 }
 
+
+// Function for showing stats.
 void Scene::ShowStats()
 {
     if(m_pPolyhedron == NULL)
