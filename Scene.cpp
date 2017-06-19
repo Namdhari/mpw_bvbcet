@@ -10,6 +10,9 @@
 
 #include <CGAL/Timer.h>
 
+// For Loop Subdivision
+#include <CGAL/Subdivision_method_3.h>
+
 // Include for IO
 #include <CGAL/IO/Polyhedron_iostream.h>
 
@@ -117,7 +120,19 @@ void Scene::render_polyhedron()
 
 void Scene::refine_loop()
 {
+    if(m_pPolyhedron == NULL)
+    {
+      std::cout << "Load polyhedron first." << std::endl;
+      return;
+    }
 
+    std::cout << "Loop subdivision...";
+
+    CGAL::Subdivision_method_3::Loop_subdivision(*m_pPolyhedron, 1);
+
+    //CGAL::Subdivision_method_3::CatmullClark_subdivision(*m_pPolyhedron, 1);
+
+    std::cout << "done (" << m_pPolyhedron->size_of_facets() << " facets)" << std::endl;
 }
 
 void Scene::toggle_view_poyhedron()
