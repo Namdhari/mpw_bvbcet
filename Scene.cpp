@@ -17,6 +17,12 @@
 #include <CGAL/IO/Polyhedron_iostream.h>
 
 
+// For mesh simplification.
+#include <CGAL/Surface_mesh_simplification/edge_collapse.h>
+#include <CGAL/Surface_mesh_simplification/Policies/Edge_collapse/Count_stop_predicate.h>
+#include <CGAL/Surface_mesh_simplification/Policies/Edge_collapse/Edge_length_cost.h>
+#include <CGAL/Surface_mesh_simplification/Policies/Edge_collapse/Midpoint_placement.h>
+
 #include "render_edges.h"
 
 Scene::Scene()
@@ -133,6 +139,43 @@ void Scene::refine_loop()
     //CGAL::Subdivision_method_3::CatmullClark_subdivision(*m_pPolyhedron, 1);
 
     std::cout << "done (" << m_pPolyhedron->size_of_facets() << " facets)" << std::endl;
+}
+
+
+
+void Scene::simplify_mesh()
+{
+    if(m_pPolyhedron == NULL)
+    {
+      std::cout << "Load polyhedron first." << std::endl;
+      return;
+    }
+
+
+    CGAL::Surface_mesh_simplification::Count_stop_predicate<Polyhedron> stop(1000);
+
+    // This the actual call to the simplification algorithm.
+    // The surface mesh and stop conditions are mandatory arguments.
+    // The index maps are needed because the vertices and edges
+    // of this surface mesh lack an "id()" field.
+    int r = CGAL::Surface_mesh_simplification::edge_collapse
+          (*m_pPolyhedron
+          ,stop
+           ,CGAL::parameters::vertex_index_map(get(CGAL::vertex_external_index,*m_pPolyhedron))
+                             .halfedge_index_map  (get(CGAL::halfedge_external_index  ,*m_pPolyhedron))
+                             .get_cost (CGAL::Surface_mesh_simplification::Edge_length_cost <Polyhedron>())
+                          .get_placement(CGAL::Surface_mesh_simplification::Midpoint_placement<Polyhedron>())
+       );
+
+
+    std::cout << "\nFinished...\n" << r << " edges removed.\n"
+       << (m_pPolyhedron->size_of_halfedges()/2) << " final edges.\n" ;
+
+
+    // Let's write the mesh output
+    std::cout << "Writing output mesh..." << std::endl;
+    std::ofstream os( "out.off" ) ;
+    os << *m_pPolyhedron ;
 }
 
 void Scene::toggle_view_poyhedron()

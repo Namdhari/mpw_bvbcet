@@ -47,6 +47,8 @@ public:
             // algorithm menu
             void on_actionRefine_loop_triggered();
 
+            void on_actionMesh_Simplification_triggered();
+
             //Show Mesh Stats
             void on_actionMesh_Statistics_triggered();
 

@@ -101,6 +101,18 @@ void MainWindow::on_actionRefine_loop_triggered()
 }
 
 
+void MainWindow::on_actionMesh_Simplification_triggered()
+{
+
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    m_pScene->simplify_mesh();
+    QApplication::restoreOverrideCursor();
+    m_pViewer->update();
+
+}
+
+
+
 void MainWindow::open(QString filename)
 {
 	QFileInfo fileinfo(filename);
@@ -163,6 +175,9 @@ void MainWindow::on_actionLoadPolyhedron_triggered()
 }
 
 
+
+
+
 void MainWindow::setAddKeyFrameKeyboardModifiers(::Qt::KeyboardModifiers m)
 {
 	m_pViewer->setAddKeyFrameKeyboardModifiers(m);
@@ -196,3 +211,6 @@ void MainWindow::on_actionMesh_Statistics_triggered()
 
     QApplication::restoreOverrideCursor();
 }
+
+
+

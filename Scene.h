@@ -40,6 +40,8 @@ public:
 
     void refine_loop();
 
+    void simplify_mesh();
+
     // rendering
     void draw(); 
     void render_polyhedron();

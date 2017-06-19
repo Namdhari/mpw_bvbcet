@@ -61,6 +61,7 @@
     <addaction name="separator"/>
     <addaction name="actionRefine_loop"/>
     <addaction name="actionCatmull_Clark"/>
+    <addaction name="actionMesh_Simplification"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -250,6 +251,11 @@
   <action name="actionCatmull_Clark">
    <property name="text">
     <string>Catmull Clark</string>
+   </property>
+  </action>
+  <action name="actionMesh_Simplification">
+   <property name="text">
+    <string>Mesh Simplification</string>
    </property>
   </action>
  </widget>
