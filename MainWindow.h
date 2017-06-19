@@ -47,6 +47,9 @@ public:
             // algorithm menu
             void on_actionRefine_loop_triggered();
 
+            //Show Mesh Stats
+            void on_actionMesh_Statistics_triggered();
+
 
             // view menu
             void on_actionView_polyhedron_triggered();

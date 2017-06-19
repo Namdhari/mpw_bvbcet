@@ -44,6 +44,10 @@ public:
     void draw(); 
     void render_polyhedron();
 
+    //For showing mesh stats.
+    void ShowStats();
+
+
 }; // end class Scene
 
 

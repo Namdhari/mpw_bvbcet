@@ -68,10 +68,17 @@
     <addaction name="actionCopy_snapshot"/>
     <addaction name="actionSave_snapshot"/>
    </widget>
+   <widget class="QMenu" name="menuStatistics">
+    <property name="title">
+     <string>Statistics</string>
+    </property>
+    <addaction name="actionMesh_Statistics"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuAlgorithms"/>
    <addaction name="menuView"/>
+   <addaction name="menuStatistics"/>
   </widget>
   <action name="actionQuit">
    <property name="text">
@@ -232,6 +239,11 @@
   <action name="actionFit_triangles">
    <property name="text">
     <string>Fit triangles</string>
+   </property>
+  </action>
+  <action name="actionMesh_Statistics">
+   <property name="text">
+    <string>Mesh Statistics</string>
    </property>
   </action>
  </widget>

@@ -177,12 +177,22 @@ void MainWindow::on_actionSave_snapshot_triggered()
 
 void MainWindow::on_actionCopy_snapshot_triggered()
 {
-  // copy snapshot to clipboard
-	QApplication::setOverrideCursor(Qt::WaitCursor);
-  QClipboard *qb = QApplication::clipboard();
-  m_pViewer->makeCurrent();
-  m_pViewer->raise();
-  QImage snapshot = m_pViewer->grabFrameBuffer(true);
-  qb->setImage(snapshot);
-	QApplication::restoreOverrideCursor();
+    // copy snapshot to clipboard
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    QClipboard *qb = QApplication::clipboard();
+    m_pViewer->makeCurrent();
+    m_pViewer->raise();
+    QImage snapshot = m_pViewer->grabFrameBuffer(true);
+    qb->setImage(snapshot);
+    QApplication::restoreOverrideCursor();
+}
+
+void MainWindow::on_actionMesh_Statistics_triggered()
+{
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+
+    std::cout << "Calling on_actionMesh_Statistics_triggered" << std::endl;
+    m_pScene->ShowStats();
+
+    QApplication::restoreOverrideCursor();
 }

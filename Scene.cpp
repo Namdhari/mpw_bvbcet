@@ -124,3 +124,39 @@ void Scene::toggle_view_poyhedron()
 {
     m_view_polyhedron = !m_view_polyhedron;
 }
+
+void Scene::ShowStats()
+{
+    if(m_pPolyhedron == NULL)
+    {
+        std::cout << "failed (no polyhedron)." << std::endl;
+        return;
+    }
+
+    std::cout << "Mesh stats are: " << std::endl;
+
+    std::cout << "Is valid " << m_pPolyhedron->is_valid() << std::endl;
+
+    std::cout << "Face count " << m_pPolyhedron->size_of_facets() << std::endl;
+
+    std::cout << "Vertex Count "<< m_pPolyhedron->size_of_vertices() << std::endl;
+
+    std::cout << "Edge Count " << m_pPolyhedron->size_of_halfedges()/2 << std::endl;
+
+
+    // Check for Euler Poincare Formula for Closed 2-manifold meshes.
+    // V + F - E = 2
+
+    int E=m_pPolyhedron->size_of_halfedges()/2;
+
+    int F=m_pPolyhedron->size_of_facets();
+
+    int V=m_pPolyhedron->size_of_vertices();
+
+    if((V+F-E)==2){
+        std::cout<<"It follows Euler Equation" << std::endl;
+    }else
+        std::cout<<"It does not follow Euler Equation" << std::endl;
+
+
+}
