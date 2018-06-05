@@ -46,6 +46,7 @@ public:
 
             // algorithm menu
             void on_actionRefine_loop_triggered();
+            void on_actionCatmull_Clark_triggered();
 
             void on_actionMesh_Simplification_triggered();
 

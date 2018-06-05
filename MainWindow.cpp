@@ -101,6 +101,17 @@ void MainWindow::on_actionRefine_loop_triggered()
 }
 
 
+void MainWindow::on_actionCatmull_Clark_triggered()
+{
+        QApplication::setOverrideCursor(Qt::WaitCursor);
+        m_pScene->refine_catmull();
+        QApplication::restoreOverrideCursor();
+        m_pViewer->update();
+}
+
+
+
+
 void MainWindow::on_actionMesh_Simplification_triggered()
 {
 

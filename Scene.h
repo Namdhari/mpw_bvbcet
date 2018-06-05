@@ -40,6 +40,8 @@ public:
 
     void refine_loop();
 
+    void refine_catmull();
+
     void simplify_mesh();
 
     // rendering
