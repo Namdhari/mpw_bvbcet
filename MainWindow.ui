@@ -62,6 +62,7 @@
     <addaction name="actionRefine_loop"/>
     <addaction name="actionCatmull_Clark"/>
     <addaction name="actionMesh_Simplification"/>
+    <addaction name="actionIsotropic_Remesh"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -256,6 +257,11 @@
   <action name="actionMesh_Simplification">
    <property name="text">
     <string>Mesh Simplification</string>
+   </property>
+  </action>
+  <action name="actionIsotropic_Remesh">
+   <property name="text">
+    <string>Isotropic Remesh</string>
    </property>
   </action>
  </widget>

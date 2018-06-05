@@ -23,6 +23,9 @@
 #include <CGAL/Surface_mesh_simplification/Policies/Edge_collapse/Edge_length_cost.h>
 #include <CGAL/Surface_mesh_simplification/Policies/Edge_collapse/Midpoint_placement.h>
 
+// For Remeshing
+#include <CGAL/Polygon_mesh_processing/remesh.h>
+
 #include "render_edges.h"
 
 Scene::Scene()
@@ -189,6 +192,38 @@ void Scene::simplify_mesh()
     std::cout << "Writing output mesh..." << std::endl;
     std::ofstream os( "out.off" ) ;
     os << *m_pPolyhedron ;
+}
+
+
+void Scene::CreateFaceMap(std::map<face_descriptor, std::size_t>& fi_map)
+{
+    std::size_t id =0;
+    BOOST_FOREACH(face_descriptor f, faces(*m_pPolyhedron))
+    {
+      fi_map[f]=id++;
+    }
+
+}
+
+
+void Scene::isotropic_remesh()
+{
+    if( m_pPolyhedron == NULL ) {
+      std::cout << "Load polyhedron first." << std::endl;
+      return;
+    }
+
+    std::map<face_descriptor, std::size_t> fi_map;
+    CreateFaceMap(fi_map);
+
+    CGAL::Polygon_mesh_processing::isotropic_remeshing (
+            faces(*m_pPolyhedron),
+            0.1,
+            *m_pPolyhedron,
+            CGAL::parameters::face_index_map(
+            boost::make_assoc_property_map(fi_map)));
+
+
 }
 
 void Scene::toggle_view_poyhedron()

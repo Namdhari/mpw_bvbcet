@@ -44,12 +44,17 @@ public:
 
     void simplify_mesh();
 
+    void isotropic_remesh();
+
     // rendering
     void draw(); 
     void render_polyhedron();
 
     //For showing mesh stats.
     void ShowStats();
+
+private :
+    void CreateFaceMap(std::map<face_descriptor, std::size_t>& fi_map);
 
 
 }; // end class Scene

@@ -15,4 +15,6 @@ typedef Kernel::Segment_3 Segment;
 typedef Kernel::Triangle_3 Triangle;
 typedef CGAL::Polyhedron_3<Kernel> Polyhedron;
 
+typedef boost::graph_traits<Polyhedron>::face_descriptor face_descriptor;
+
 #endif // PCA_DEMO_TYPES_H
